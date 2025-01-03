@@ -1,6 +1,8 @@
 package review;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -70,7 +72,8 @@ public class NhanVienList {
             System.out.println("2. Hien thi danh sach nhan vien");
             System.out.println("3. Doc file nhanvien.dat");
             System.out.println("4. Luu nhanh vien vao file");
-            System.out.println("5. Thoat");
+            System.out.println("5. Xem nhan vien co luong thap nhat");
+            System.out.println("6. Thoat");
             System.out.println("----------------------------------------------------");
             int op;
             while (true) {
@@ -91,7 +94,9 @@ public class NhanVienList {
                     arr.hienDanhSachNhanVien(NhanVienList);
                 case 4 ->
                     arr.luuNhanVien(NhanVienList);
-                case 5 -> {
+                case 5 -> 
+                    arr.getNhanVienLuongMin(NhanVienList);
+                case 6 -> {
                     sc.close();
                     System.out.println("Thoat chuong trinh");
                     return;
