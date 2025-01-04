@@ -278,6 +278,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Luu nhan vien"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="add">
       <Properties>
