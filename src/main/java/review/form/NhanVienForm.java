@@ -1,5 +1,11 @@
 package review.form;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 public class NhanVienForm extends javax.swing.JFrame {
     public NhanVienForm() {
         initComponents();
@@ -98,8 +104,18 @@ public class NhanVienForm extends javax.swing.JFrame {
         });
 
         fieldmale.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nu", "Khong xac dinh" }));
+        fieldmale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldmaleActionPerformed(evt);
+            }
+        });
 
         fieldclass.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Thiet bi", "Nhan su", "R&D", "Kinh doanh" }));
+        fieldclass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldclassActionPerformed(evt);
+            }
+        });
 
         save.setText("Luu nhan vien");
         save.addActionListener(new java.awt.event.ActionListener() {
@@ -230,11 +246,78 @@ public class NhanVienForm extends javax.swing.JFrame {
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
         // TODO add your handling code here:
+        try {
+            String name = fieldname.getText();
+            String date = fielddate.getText();
+            String location = fieldlocation.getText();
+            String male = fieldmale.getSelectedItem().toString();
+            String phongban = fieldclass.getSelectedItem().toString();
+            double rate = Double.parseDouble(fieldrate.getText());
+            double year = Double.parseDouble(fieldyear.getText());
+            double ratenumber = Double.parseDouble(fieldratenumber.getText());
+
+            System.out.printf("Name: %s, Date: %s, Location: %s, Male: %s, Phongban: %s, Rate: %.2f, Year: %.2f, Ratenumber: %.2f%n",
+                    name, date, location, male, phongban, rate, year, ratenumber);
+        } catch (NumberFormatException e) {
+            System.out.println("Error: Invalid number format");
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("An error occurred: " + e.getMessage());
+            e.printStackTrace();
+        }
+
     }//GEN-LAST:event_addActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         // TODO add your handling code here:
+        File file = new File("C:\\Users\\togia\\Downloads\\nhanvien.dat");
+        ArrayList<NhanVien> nv = new ArrayList<>();
+        try (PrintWriter out = new PrintWriter(new FileWriter(file, true))) {
+            NhanVien abc = new NhanVien();
+            abc.hoten = fieldname.getText();
+            abc.ngaysinh = fielddate.getText();
+            abc.diachi = fieldlocation.getText();
+            abc.gioitinh = fieldmale.getSelectedItem().toString();
+            abc.phongban = fieldclass.getSelectedItem().toString();
+            if(!fieldrate.getText().isEmpty()) {
+                abc.luongcoban = Double.parseDouble(fieldrate.getText());
+            }
+            if(!fieldyear.getText().isEmpty()) {
+                abc.thamnien = Double.parseDouble(fieldyear.getText());
+            }
+            if(!fieldratenumber.getText().isEmpty()) {
+                abc.hesoluong = Double.parseDouble(fieldratenumber.getText());
+            }
+            nv.add(abc);
+            for(NhanVien x: nv) {
+                out.println("Ho ten: " + x.hoten);
+                out.println("Ngay sinh: " + x.ngaysinh);
+                out.println("Dia chi: " + x.diachi);
+                out.println("Gioi tinh: " + x.gioitinh);
+                out.println("Phong ban: " + x.phongban);
+                out.println("He so luong: " + x.hesoluong);
+                out.println("Tham nien: " + x.thamnien);
+                out.println("Luong co ban: " + x.luongcoban);
+                out.println("--------------------------------");
+            }
+            JOptionPane.showMessageDialog(null, "Luu thanh cong!", "Thanh cong", JOptionPane.DEFAULT_OPTION);
+            out.close();
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Loi dinh dang so!", "Loi", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("An error occurred: " + e.getMessage());
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_saveActionPerformed
+
+    private void fieldmaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldmaleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fieldmaleActionPerformed
+
+    private void fieldclassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldclassActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fieldclassActionPerformed
 
     /**
      * @param args the command line arguments

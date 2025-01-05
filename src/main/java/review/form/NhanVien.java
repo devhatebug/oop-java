@@ -12,11 +12,8 @@ public class NhanVien extends Person {
         this.luongcoban = luongcoban;
     }
 
-    public NhanVien(String phongban, double hesoluong, double thamnien, double luongcoban) {
-        this.phongban = phongban;
-        this.hesoluong = hesoluong;
-        this.thamnien = thamnien;
-        this.luongcoban = luongcoban;
+    public NhanVien() {
+        
     }
 
     public String getPhongban() {
