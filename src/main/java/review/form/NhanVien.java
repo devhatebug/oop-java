@@ -1,6 +1,7 @@
 package review.form;
 
 public class NhanVien extends Person {
+
     protected String phongban;
     protected double hesoluong, thamnien, luongcoban;
 
@@ -13,7 +14,7 @@ public class NhanVien extends Person {
     }
 
     public NhanVien() {
-        
+
     }
 
     public String getPhongban() {
@@ -31,9 +32,9 @@ public class NhanVien extends Person {
     public double getLuongcoban() {
         return luongcoban;
     }
-    
+
     public double getLuongthuclinh() {
-        return luongcoban*hesoluong*(1 + thamnien/100);
+        return luongcoban * hesoluong * (1 + thamnien / 100);
     }
 
     public void setPhongban(String phongban) {
@@ -54,7 +55,7 @@ public class NhanVien extends Person {
 
     @Override
     public void hienThongtin() {
-        System.out.printf("%-20s %-20s %-20s %-20s %-20s %-20f %-20f %-20f %-20f\n", super.hoten, super.ngaysinh, super.diachi, super.gioitinh,phongban, hesoluong, thamnien, luongcoban, getLuongthuclinh());
+        System.out.printf("%-20s %-20s %-20s %-20s %-20s %-20f %-20f %-20f %-20f\n", super.hoten, super.ngaysinh, super.diachi, super.gioitinh, phongban, hesoluong, thamnien, luongcoban, getLuongthuclinh());
     }
-    
+
 }
